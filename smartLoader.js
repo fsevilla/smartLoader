@@ -23,7 +23,7 @@ THE SOFTWARE.
 (function(H){
 
 	H.smartLoader = {
-		version : "1.0.10",
+		version : "0.1.0",
 		modules : [],
 		events : [],
 		scope : [],
@@ -35,7 +35,7 @@ THE SOFTWARE.
 			baseElement : null, // if passed, insert script and link tags before this element
 			baseUrl : null, // base folder for scripts from framework and headerFooter modules
 			paths : { // set of paths (relative to baseUrl) to be used for specific modules
-				// "scripts" : "scripts/"
+				"scripts" : "scripts/"
 			},
 			noCache : false //if true, adds a timestamp to every asset loaded
 		},
