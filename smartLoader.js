@@ -20,9 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-(function(H){
-
-	H.smartLoader = {
+(function(Global){
+	Global.smartLoader = {
 		version : "0.1.0",
 		modules : [],
 		events : [],
@@ -51,16 +50,21 @@ THE SOFTWARE.
 		},
 		loadMain: function(){
 			var scripts = document.getElementsByTagName("script");
+
 			for(var i=scripts.length-1;i>=0;i--){
 				var path = scripts[i].src;
 				if(path.match(/smartLoader(.*)(.js)/)){
-					var mainScriptPath = scripts[i].getAttribute('data-main');
-					
-					if(this.isAbsoluteUrl(mainScriptPath)){
-						this.loadScript(mainScriptPath,this.init.call(this));
-					}else{
-						this.loadScript(this.getBaseUrl(scripts[i])+'/'+mainScriptPath+'.js',this.init.call(this));
+					var mainScriptPath = scripts[i].getAttribute('data-main'),
+						me = this;
+					if(mainScriptPath){
+						if(!this.isAbsoluteUrl(mainScriptPath)){
+							mainScriptPath = this.getBaseUrl(scripts[i])+'/'+mainScriptPath+'.js';
+						}
+						this.loadScript(mainScriptPath,function(){
+							me.init.call(me);
+						});
 					}
+					
 					break;
 				}
 			}
@@ -130,6 +134,14 @@ THE SOFTWARE.
 				this.browser.version = parseFloat(ua.substring(index+versionString.length+1));
 
 			return this.browser;
+		},
+		getLoadedFiles :function(){ //get all the files in HTML
+			var scripts = document.getElementsByTagName("script");
+			for(var i=0;i<scripts.length;i++){
+				if(!!scripts[i].src){
+					this.loadedFiles[scripts[i].src] = "loaded";
+				}
+			}
 		},
 		loadScript :function(path,callback,baseElement) {
 			if(!path)
@@ -560,7 +572,7 @@ THE SOFTWARE.
 				var me = this;
 				// Page load event
 				var onLoad = function(data){
-					H.smartLoader.events["load"] = true;
+					Global.smartLoader.events["load"] = true;
 					me.fire("load",data);
 				};
 				if(document.readyState=="complete"){
@@ -570,7 +582,7 @@ THE SOFTWARE.
 				}
 				// User ready event
 				var onUserReady = function(data){
-					H.smartLoader.events["userReady"] = true;
+					Global.smartLoader.events["userReady"] = true;
 					me.fire("userReady",data);
 				};
 				var userReadyEvents = ['keydown','mousemove','mousedown'];
@@ -656,7 +668,7 @@ THE SOFTWARE.
 	};
 
 	// Initialize Loader
-	H.smartLoader.Events.addEvent("load",function(){
-		H.smartLoader.loadMain(); //calls init after loading main file
+	Global.smartLoader.Events.addEvent("load",function(){
+		Global.smartLoader.loadMain(); //calls init after loading main file
 	});
 })(window);
