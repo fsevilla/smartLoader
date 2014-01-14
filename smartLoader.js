@@ -259,14 +259,15 @@ THE SOFTWARE.
 			//Init module on array
 			if(!this.modules[moduleName]){
 				this.modulesCount++;
-				this.modules[moduleName] = { status : null, dependency : [], files : { count : 0, loaded : 0 } };
-			} else {
-				this.modules[moduleName] = {
-					status : this.modules[moduleName].status || null,
-					dependency : this.modules[moduleName].dependency || [],
-					files : this.modules[moduleName].files || {}
-				};
+				this.modules[moduleName] = {};
 			}
+			
+			this.modules[moduleName] = {
+				name: moduleName,
+				status : this.modules[moduleName].status || null,
+				dependency : this.modules[moduleName].dependency || [],
+				files : this.modules[moduleName].files || {count : 0, loaded : 0}
+			};
 		},
 		loadModule :function(moduleName,options) {
 			if(typeof(moduleName)=="function" || typeof(moduleName)=="object"){
@@ -312,8 +313,9 @@ THE SOFTWARE.
 					// console.log("Module '"+moduleName+"' is loading");					
 					this.modules[moduleName].status = "loading";
 
-					if(typeof(options.onStart)=="function"){
-						options.onStart.apply(self,this.getScopes(moduleName,true));
+					if(typeof(options.onStart)=="function"){						
+						// options.onStart.apply(self,this.getScopes(moduleName,true));
+						options.onStart.apply(this.modules[moduleName],this.getScopes(moduleName,true));
 					}
 
 					//Save callback function
@@ -349,8 +351,10 @@ THE SOFTWARE.
 					};
 
 					var onComplete = function(){
-						if(typeof(options.onComplete)=="function")
-							options.onComplete.apply(self,me.getScopes(moduleName));
+						if(typeof(options.onComplete)=="function"){							
+							// options.onComplete.apply(self,me.getScopes(moduleName));
+							options.onComplete.apply(me.modules[moduleName],me.getScopes(moduleName));
+						}
 					};
 
 					//Load stylesheets
