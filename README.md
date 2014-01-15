@@ -50,6 +50,9 @@ The path to 'config' is relative to the path of smartLoader.js. **Note** how the
 
 Basic Usage
 ===========
+
+The following shows a basic example of the configuration script:
+
 ```js
 // Initialize the loader if you want to change the default settings. 
 // Otherwise you can avoid this call and smartLoader will initialize itself on page load.
