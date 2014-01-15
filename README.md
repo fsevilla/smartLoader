@@ -33,15 +33,19 @@ smartLoader consists on two JavaScript files.
 * configuration script
 
 These files can be loaded as follows:
-´´´js
+```html
+<!-- Load smartLoader source file -->
 <script src="path/to/smartLoader.js"></script>
+<!-- Load configuration script -->
 <script src="path/to/config.js"></script>
-´´´
+```
 
 or simply by adding the configuration file to the data-main attribute. 
-´´´js
+
+```html
+<!-- Load smartLoader source file with configuration script -->
 <script src="path/to/smartLoader.js" data-main="config"></script>
-´´´
+```
 
 The path to 'config' is relative to smartLoader.js. Note how the extension .js is missing. smartLoader handles that so you save a few bytes from the HTML.
 
