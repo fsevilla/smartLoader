@@ -48,7 +48,47 @@ or simply by adding the configuration file to the data-main attribute.
 
 The path to 'config' is relative to the path of smartLoader.js. **Note** how the extension .js is missing. smartLoader handles that so you save a few characters from the HTML.
 
+Basic Usage
+===========
+```js
+// Initialize the loader if you want to change the default settings. 
+// Otherwise you can avoid this call and smartLoader will initialize itself on page load.
+smartLoader.init();
 
+// Load jquery & jquery UI after page load event
+smartLoader.onLoad('jquery',{
+  scripts: ['path/to/jquery.js','path/to/jquery-ui.js'],
+  async: false, // make sure jquery loads before jquery ui
+  onStart: function(){
+    // Code to execute when module starts loading
+  },
+  onComplete: function(){
+    // Code to execute after both scripts have loaded
+  }
+});
+
+// Load the application script after jquery
+smartLoader.loadModule('app',{
+  scripts: 'path/to/app.js',
+  dependency: 'jquery', // starts loading after module 'jquery' has been fully loaded
+  onComplete: function(a){
+    // Do something with scoped var 'a' defined in app.js
+  }
+});
+
+// load lightbox JS & CSS after user has interacted with the page
+smartLoader.onUserReady('lightbox',{
+  scripts: 'path/to/lightbox.js',
+  styles: 'path/to/lightbox.css'
+});
+
+// execute a function after both 'app' & 'lightbox' modules have loaded
+smartLoader.onModuleReady(['app','lightbox'],'lightboxInit',function(){
+  // Execute a JS function after both modules have loaded
+  // e.g. initLightbox();
+});
+
+```
 
 Browser support
 ===========
