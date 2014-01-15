@@ -1,7 +1,7 @@
 smartLoader
 ===========
 
-smartLoader is an asynchronous JavaScript and CSS loader that helps to improve performance with a very simple and unique implementation.
+smartLoader is an asynchronous JavaScript and CSS loader that helps to improve page load time with a very simple and unique implementation.
 
 Built in pure JavaScript, smartLoader is dependency-free, allowing you to load any resources from both relative and absolute locations.
 
