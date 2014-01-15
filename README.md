@@ -5,7 +5,7 @@ smartLoader is an asynchronous JavaScript and CSS loader that helps to improve p
 
 Built in pure JavaScript, smartLoader is dependency-free, allowing you to load any resources from both relative and absolute locations.
 
-smartLoader does not implement the [https://github.com/amdjs/amdjs-api/wiki/AMD](Asynchronous Module Definition(AMD) API. However, it is a powerful resource to load 'modules' defining dependencies and events that need to be loaded|triggered before loading a specific module. 
+smartLoader does not implement the [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api/wiki/AMD)(AMD) API. However, it is a powerful resource to load 'modules' defining dependencies and events that need to be loaded|triggered before loading a specific module. 
 
 Download
 ===========
