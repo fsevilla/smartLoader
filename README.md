@@ -25,6 +25,28 @@ Features
 * All configuration occurs in a single JavaScript file
 * Supports all major browsers
 
+Getting started
+===========
+
+smartLoader consists on two JavaScript files. 
+* smartLoader source file
+* configuration script
+
+These files can be loaded as follows:
+´´´js
+<script src="path/to/smartLoader.js"></script>
+<script src="path/to/config.js"></script>
+´´´
+
+or simply by adding the configuration file to the data-main attribute. 
+´´´js
+<script src="path/to/smartLoader.js" data-main="config"></script>
+´´´
+
+The path to 'config' is relative to smartLoader.js. Note how the extension .js is missing. smartLoader handles that so you save a few bytes from the HTML.
+
+
+
 Browser support
 ===========
 
