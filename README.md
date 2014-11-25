@@ -1,17 +1,17 @@
-ezLoader
+smartLoader
 ===========
 
-ezLoader is an asynchronous JavaScript and CSS loader that helps to improve performance with a very simple and unique implementation.
+smartLoader is an asynchronous JavaScript and CSS loader that helps to improve performance with a very simple and unique implementation.
 
-Built in pure JavaScript, ezLoader is dependency-free, allowing you to load any resources from both relative and absolute locations.
+Built in pure JavaScript, smartLoader is dependency-free, allowing you to load any resources from both relative and absolute locations.
 
-ezLoader **does not** implement the [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api/wiki/AMD) (AMD) API. However, it is a powerful resource to load 'modules' defining dependencies and events that need to be loaded|triggered before loading a specific module. These defintions occur in a single configuration file.
+smartLoader **does not** implement the [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api/wiki/AMD) (AMD) API. However, it is a powerful resource to load 'modules' defining dependencies and events that need to be loaded|triggered before loading a specific module. These defintions occur in a single configuration file.
 
 Download
 ===========
 
-* [ezLoader.js](https://github.com/fsevilla/ezLoader/raw/master/ezLoader.js) (full source)
-* [ezLoader.min.js](https://github.com/fsevilla/ezLoader/raw/master/ezLoader.min.js) (minified)
+* [smartLoader.js](https://github.com/fsevilla/smartLoader/raw/master/smartLoader.js) (full source)
+* [smartLoader.min.js](https://github.com/fsevilla/smartLoader/raw/master/smartLoader.min.js) (minified)
 
 Features
 ===========
@@ -28,25 +28,25 @@ Features
 Getting started
 ===========
 
-ezLoader consists of two JavaScript files. 
-* ezLoader source file
+smartLoader consists of two JavaScript files. 
+* smartLoader source file
 * configuration script
 
 These files can be loaded as follows:
 ```html
-<!-- Load ezLoader source file -->
-<script src="path/to/ezLoader.js"></script>
+<!-- Load smartLoader source file -->
+<script src="path/to/smartLoader.js"></script>
 <!-- Load configuration script -->
 <script src="path/to/config.js"></script>
 ```
 
 or simply by adding the configuration file to the data-main attribute. 
 ```html
-<!-- Load ezLoader source file with configuration script -->
-<script src="path/to/ezLoader.js" data-main="config"></script>
+<!-- Load smartLoader source file with configuration script -->
+<script src="path/to/smartLoader.js" data-main="config"></script>
 ```
 
-The path to 'config' is relative to the path of ezLoader.js. **Note** how the extension .js is missing. ezLoader handles that so you save a few characters from the HTML.
+The path to 'config' is relative to the path of smartLoader.js. **Note** how the extension .js is missing. smartLoader handles that so you save a few characters from the HTML.
 
 Basic Usage
 ===========
@@ -55,11 +55,11 @@ The following shows a basic example of the configuration script:
 
 ```js
 // Initialize the loader if you want to change the default settings. 
-// Otherwise you can avoid this call and ezLoader will initialize itself on page load.
-ezLoader.init();
+// Otherwise you can avoid this call and smartLoader will initialize itself on page load.
+smartLoader.init();
 
 // Load jquery & jquery UI after page load event
-ezLoader.onLoad('jquery',{
+smartLoader.onLoad('jquery',{
   scripts: ['path/to/jquery.js','path/to/jquery-ui.js'],
   async: false, // make sure jquery loads before jquery ui
   onStart: function(){
@@ -71,7 +71,7 @@ ezLoader.onLoad('jquery',{
 });
 
 // Load the application script after jquery
-ezLoader.loadModule('app',{
+smartLoader.loadModule('app',{
   scripts: 'path/to/app.js',
   dependency: 'jquery', // starts loading after module 'jquery' has been fully loaded
   onComplete: function(a){
@@ -80,13 +80,13 @@ ezLoader.loadModule('app',{
 });
 
 // load lightbox JS & CSS after user has interacted with the page
-ezLoader.onUserReady('lightbox',{
+smartLoader.onUserReady('lightbox',{
   scripts: 'path/to/lightbox.js',
   styles: 'path/to/lightbox.css'
 });
 
 // execute a function after both 'app' & 'lightbox' modules have loaded
-ezLoader.onModuleReady(['app','lightbox'],'lightboxInit',function(){
+smartLoader.onModuleReady(['app','lightbox'],'lightboxInit',function(){
   // Execute a JS function after both modules have loaded
   // e.g. initLightbox();
 });
