@@ -101,3 +101,4 @@ Browser support
 * Safari 5+
 * Chrome 3+
 * Opera 10+
+
